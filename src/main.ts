@@ -3,7 +3,7 @@ import P5 from 'p5';
 import sketches from './sketches';
 
 new P5((p5: P5) => {
-  const sketch = new sketches.MovingRectangle({ p5 });
+  const sketch = new sketches.RandomEllipse({ p5 });
 
   p5.setup = () => {
     sketch.setup();
