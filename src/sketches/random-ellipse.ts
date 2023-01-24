@@ -87,6 +87,8 @@ export default class RandomEllipse extends BaseSketch {
     return Math.random() > 0.5 ? 1 : -1;
   };
 
+  preload = () => {};
+
   draw = () => {
     const attributes: Array<keyof typeof this.ATTRIBUTE_VALUES> = Object.keys(
       this.ATTRIBUTE_VALUES,
@@ -125,4 +127,6 @@ export default class RandomEllipse extends BaseSketch {
 
     this._p5.background(this._colors.darkRed);
   };
+
+  remove = () => {};
 }

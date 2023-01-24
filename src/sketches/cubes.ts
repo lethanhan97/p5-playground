@@ -17,6 +17,8 @@ export default class Cubes extends BaseSketch {
     };
   }
 
+  preload = () => {};
+
   setup = () => {
     this._p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE, this._p5.WEBGL);
   };
@@ -37,4 +39,6 @@ export default class Cubes extends BaseSketch {
     this._p5.rotateY(this._p5.mouseX / 1000);
     this._p5.box(100);
   };
+
+  remove = () => {};
 }

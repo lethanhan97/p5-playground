@@ -9,6 +9,8 @@ export abstract class BaseSketch {
     this._name = name;
   }
 
-  abstract draw: () => void;
+  abstract preload: () => void;
   abstract setup: () => void;
+  abstract draw: () => void;
+  abstract remove: () => void;
 }

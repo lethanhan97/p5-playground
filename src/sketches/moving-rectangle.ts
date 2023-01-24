@@ -31,6 +31,8 @@ export default class MovingRectangle extends BaseSketch {
     return width * 2;
   }
 
+  preload = () => {};
+
   setup = () => {
     this._p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
     this._p5.rectMode(this._p5.CENTER);
@@ -52,4 +54,6 @@ export default class MovingRectangle extends BaseSketch {
     this._p5.fill(color2);
     this._p5.rect((CANVAS_SIZE * 3) / 4, CANVAS_SIZE / 2, w2, h2);
   };
+
+  remove = () => {};
 }

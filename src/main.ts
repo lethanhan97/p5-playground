@@ -5,6 +5,10 @@ import sketches from './sketches';
 new P5((p5: P5) => {
   const sketch = new sketches.Cubes({ p5 });
 
+  p5.preload = () => {
+    sketch.preload();
+  };
+
   p5.setup = () => {
     sketch.setup();
     const title = document.getElementById('title');
@@ -13,5 +17,9 @@ new P5((p5: P5) => {
 
   p5.draw = () => {
     sketch.draw();
+  };
+
+  p5.remove = () => {
+    sketch.remove();
   };
 });
