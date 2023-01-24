@@ -1,6 +1,6 @@
-import P5 from "p5";
-import { CANVAS_SIZE } from "./constants";
-import { BaseSketch } from "./types";
+import P5 from 'p5';
+import { CANVAS_SIZE } from './constants';
+import { BaseSketch } from './types';
 
 interface Colors {
   blue: P5.Color;
@@ -36,7 +36,7 @@ export default class RandomEllipse extends BaseSketch {
   readonly SCALE = 10;
 
   constructor({ p5 }: { p5: P5 }) {
-    super({ p5, name: "Random Ellipse" });
+    super({ p5, name: 'Random Ellipse' });
 
     this._colors = {
       blue: p5.color(191, 224, 255),
@@ -89,7 +89,7 @@ export default class RandomEllipse extends BaseSketch {
 
   draw = () => {
     const attributes: Array<keyof typeof this.ATTRIBUTE_VALUES> = Object.keys(
-      this.ATTRIBUTE_VALUES
+      this.ATTRIBUTE_VALUES,
     ) as Array<keyof typeof this.ATTRIBUTE_VALUES>;
     attributes.forEach((attribute) => {
       const multiplier = this.getMultiplier({

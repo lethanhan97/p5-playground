@@ -1,6 +1,6 @@
-import P5 from "p5";
-import { CANVAS_SIZE } from "./constants";
-import { BaseSketch } from "./types";
+import P5 from 'p5';
+import { CANVAS_SIZE } from './constants';
+import { BaseSketch } from './types';
 
 interface Colors {
   black: P5.Color;
@@ -11,7 +11,7 @@ export default class MovingRectangle extends BaseSketch {
   _colors: Colors;
 
   constructor({ p5 }: { p5: P5 }) {
-    super({ p5, name: "Moving Rectangle" });
+    super({ p5, name: 'Moving Rectangle' });
 
     this._colors = {
       black: p5.color(0, 0, 0),
