@@ -3,6 +3,8 @@ import { CANVAS_SIZE } from './constants';
 import { BaseSketch } from './types';
 
 interface Colors {
+  black: P5.Color;
+  white: P5.Color;
   blue: P5.Color;
   darkRed: P5.Color;
   darkGreen: P5.Color;
@@ -19,6 +21,7 @@ export default class RandomEllipse extends BaseSketch {
     width: 50,
     height: 50,
   };
+
   readonly MAX = {
     x: CANVAS_SIZE,
     y: CANVAS_SIZE,
@@ -39,13 +42,15 @@ export default class RandomEllipse extends BaseSketch {
     super({ p5, name: 'Random Ellipse' });
 
     this._colors = {
+      black: p5.color(0, 0, 0),
+      white: p5.color(256, 256, 256),
       blue: p5.color(191, 224, 255),
       darkRed: p5.color(156, 47, 47),
       darkGreen: p5.color(47, 156, 88),
     };
   }
 
-  drawShape = ({
+  drawEllipse = ({
     position: { x, y },
     dimensions: { width, height },
     fillColor,
@@ -108,7 +113,7 @@ export default class RandomEllipse extends BaseSketch {
       this.ATTRIBUTE_VALUES[attribute] += modifier;
     });
 
-    this.drawShape({
+    this.drawEllipse({
       position: {
         x: this.ATTRIBUTE_VALUES.x,
         y: this.ATTRIBUTE_VALUES.y,
@@ -117,15 +122,15 @@ export default class RandomEllipse extends BaseSketch {
         width: this.ATTRIBUTE_VALUES.width,
         height: this.ATTRIBUTE_VALUES.height,
       },
-      fillColor: this._colors.blue,
-      strokeColor: this._colors.darkRed,
+      fillColor: this._colors.black,
+      strokeColor: this._colors.white,
     });
   };
 
   setup = () => {
     this._p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
 
-    this._p5.background(this._colors.darkRed);
+    this._p5.background(this._colors.white);
   };
 
   remove = () => {};
