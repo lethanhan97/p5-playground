@@ -16,7 +16,7 @@ interface GridItem {
 
 export default class CheckeredBoard extends BaseSketch {
   _colors: Colors;
-  _grid: GridItem[][] = [];
+  _gridCache: Map<number, GridItem[][]> = new Map();
 
   constructor({ p5 }: { p5: P5 }) {
     super({ p5, name: 'Checkered Board' });
@@ -33,7 +33,7 @@ export default class CheckeredBoard extends BaseSketch {
     this._p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
   };
 
-  getRectangles = (dimension: number) => {
+  getGrid = (dimension: number) => {
     const gridSize = CANVAS_SIZE / dimension;
 
     const grid: GridItem[][] = [...Array(dimension)].map((_, i) => {
@@ -55,11 +55,11 @@ export default class CheckeredBoard extends BaseSketch {
       });
     });
 
-    this._grid = grid;
+    return grid;
   };
 
-  drawGrid = () => {
-    this._grid.forEach((row) => {
+  drawGrid = (grid: GridItem[][]) => {
+    grid.forEach((row) => {
       row.forEach((item) => {
         this._p5.fill(item.color);
         this._p5.square(item.x, item.y, item.gridSize);
@@ -73,8 +73,17 @@ export default class CheckeredBoard extends BaseSketch {
 
   draw = () => {
     const dimension = this.getDimension();
-    this.getRectangles(dimension);
-    this.drawGrid();
+
+    const grid =
+      this._gridCache.get(dimension) ||
+      (() => {
+        const _grid = this.getGrid(dimension);
+        this._gridCache.set(dimension, _grid);
+
+        return _grid;
+      })();
+
+    this.drawGrid(grid);
   };
 
   remove = () => {};
