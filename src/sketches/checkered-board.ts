@@ -18,8 +18,6 @@ export default class CheckeredBoard extends BaseSketch {
   _colors: Colors;
   _grid: GridItem[][] = [];
 
-  readonly GRID_DIMENSION: number = 16;
-
   constructor({ p5 }: { p5: P5 }) {
     super({ p5, name: 'Checkered Board' });
 
@@ -33,18 +31,17 @@ export default class CheckeredBoard extends BaseSketch {
 
   setup = () => {
     this._p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE);
-    this.getRectangles();
   };
 
-  getRectangles = () => {
-    const gridSize = CANVAS_SIZE / this.GRID_DIMENSION;
+  getRectangles = (dimension: number) => {
+    const gridSize = CANVAS_SIZE / dimension;
 
-    const grid: GridItem[][] = [...Array(this.GRID_DIMENSION)].map((_, i) => {
+    const grid: GridItem[][] = [...Array(dimension)].map((_, i) => {
       // Generate row
       // Every row will have the same y value, starting from 0
       const y = gridSize * i;
 
-      return [...Array(this.GRID_DIMENSION)].map((_, j) => {
+      return [...Array(dimension)].map((_, j) => {
         // Generate row item
         // x starts from 0
         const x = gridSize * j;
@@ -70,13 +67,14 @@ export default class CheckeredBoard extends BaseSketch {
     });
   };
 
-  draw = () => {
-    this.getRectangles();
-    this.drawGrid();
+  getDimension = () => {
+    return Math.max(Math.floor(this._p5.mouseX / 100), 1);
+  };
 
-    console.log({
-      mouseX: this._p5.mouseX,
-    });
+  draw = () => {
+    const dimension = this.getDimension();
+    this.getRectangles(dimension);
+    this.drawGrid();
   };
 
   remove = () => {};
